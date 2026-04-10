@@ -4,6 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import { CheckCircle, Calendar, Share2, Home } from 'lucide-react';
 import './Pages.css';
 
+/**
+ * Confirmation Component
+ * 
+ * Final success page for the workshop booking journey.
+ * Provides clear affirmative feedback and actionable next steps for the student.
+ */
 const Confirmation = () => {
   return (
     <div className="page-container container fade-in">

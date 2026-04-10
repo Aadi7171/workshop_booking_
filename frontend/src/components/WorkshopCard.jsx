@@ -3,6 +3,16 @@ import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './WorkshopCard.css';
 
+/**
+ * WorkshopCard Component
+ * 
+ * A scannable, card-based representation of a workshop.
+ * Features a category badge, key details (Date, Instructor), 
+ * and a dynamic 'seats left' indicator that highlights low availability.
+ * 
+ * @param {Object} props
+ * @param {Object} props.workshop - The workshop data object.
+ */
 const WorkshopCard = ({ workshop }) => {
   const { id, title, category, date, seatsLeft, instructor } = workshop;
   

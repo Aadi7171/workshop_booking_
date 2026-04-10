@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Compass, ShieldCheck, Zap } from 'lucide-react';
 import './Pages.css';
 
+/**
+ * Home Component
+ * 
+ * The primary landing page for the FOSSEE Workshop Portal.
+ * Designed to pivot the original organizer-centric dashboard into a 
+ * high-impact, student-centric discovery hub with a clear primary CTA.
+ */
 const Home = () => {
   return (
     <div className="page-container fade-in">
