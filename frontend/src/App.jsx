@@ -19,6 +19,7 @@ function App() {
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/status" element={<Status />} />
           <Route path="/propose" element={<ProposeWorkshop />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Layout>
     </HelmetProvider>
