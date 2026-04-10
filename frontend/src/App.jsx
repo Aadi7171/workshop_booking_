@@ -12,17 +12,14 @@ import ProposeWorkshop from './pages/ProposeWorkshop';
 function App() {
   return (
     <HelmetProvider>
-      <div className="app-container">
-        <Navigation />
-        <main className="content-area container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/status" element={<Status />} />
-            <Route path="/propose" element={<ProposeWorkshop />} />
-          </Routes>
-        </main>
-      </div>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/statistics" element={<Statistics />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/propose" element={<ProposeWorkshop />} />
+        </Routes>
+      </Layout>
     </HelmetProvider>
   );
 }
