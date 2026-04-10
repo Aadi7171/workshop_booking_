@@ -60,18 +60,18 @@ A high-performance, mobile-first student platform designed to discover and book 
 
 ---
 
-## 🧠 Reasoning & Design Decisions
+## 🧠 Reasoning & Professional Design Rationale
 
 ### 1. What design principles guided your improvements?
-My primary guiding principle was **"Cognitive Load Reduction."** I shifted the portal's focus from a data-heavy management tool into a streamlined conversion engine. 
-- **Journey Mapping**: Landing -> Find -> Detail -> Book -> Success.
-- **Visual Hierarchy**: Using scale and color (Emerald for success, Indigo for primary actions) to guide the student's eye to the most critical information first.
+My primary guiding principle was **"Cognitive Load Reduction."** I shifted the portal's focus from a data-heavy management tool into a streamlined conversion engine designed for students.
+- **Conversion Journey**: I mapped the student flow to prioritize "Discovery-to-Booking" speed. The UI now guides users through a linear path: Landing -> Find -> Detail -> Book -> Success.
+- **Information Density**: I removed the clutter of the legacy dashboard, using scale and color (Emerald for success, Indigo for primary actions) to emphasize the most critical data points first.
 
 ### 2. How did you ensure responsiveness across devices?
-I followed a **"Mobile-First, Desktop-Second"** approach:
-- **Thumb-Zone UX**: Placed critical navigation items in a bottom glass-bar on mobile.
-- **Vertical Scannability**: Discarded horizontal tables in favor of vertical cards for better readability on small screens.
-- **Sticky CTAs**: Implemented a fixed conversion bar on the detail page to ensure the "Book" button is always accessible without scrolling.
+I adopted a **"Mobile-First, Optimized for Scanning"** strategy:
+- **Thumb-Zone UX**: On small screens, critical navigation is migrated to a glass-bar at the bottom of the viewport, which is objectively more reachable for mobile users.
+- **Vertical Hierarchy**: Traditional horizontal tables are a known pain point on mobile. I replaced them with vertical "Discovery Cards" that allow for rapid vertical scrolling and faster decision-making.
+- **Sticky Conversion**: I implemented a persistent "Book Now" bar on the mobile detail page, ensuring the primary CTA is never buried by content scrolling.
 
 ---
 

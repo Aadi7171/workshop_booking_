@@ -37,15 +37,15 @@ const Booking = () => {
   const handleBack = () => setStep(s => s - 1);
 
   /**
-   * Submission handler
-   * Simulates network latency (1.5s) to provide micro-UX feedback 
-   * (Loading states) as per the design requirements.
+   * Handle booking submission
+   * Micro-UX: Simulate network latency to prevent jarring transitions and 
+   * demonstrate loading/feedback states for the user.
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API network latency
+    // Artificial delay to simulate real-world API latency
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     navigate('/confirmation');
