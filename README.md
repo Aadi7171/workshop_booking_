@@ -20,15 +20,15 @@ The most challenging part of the task was breaking down the legacy Django templa
 
 ### Setup Instructions
 
-1. Navigate to the `frontend/` directory.
+1. Navigate to the `frontend/` directory:
    ```bash
    cd frontend
    ```
-2. Install the necessary dependencies.
+2. Install the necessary dependencies:
    ```bash
    npm install
    ```
-3. Run the Vite development server.
+3. Run the Vite development server:
    ```bash
    npm run dev
    ```
