@@ -10,6 +10,14 @@ const Home = () => {
       <Helmet>
         <title>Home | FOSSEE Workshop Booking</title>
         <meta name="description" content="Welcome to the FOSSEE Workshops dashboard. Empowering education through free and open-source software." />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="FOSSEE Workshop Booking - Home" />
+        <meta property="og:description" content="Manage and propose technical workshops through the official FOSSEE portal." />
+        <meta property="og:site_name" content="FOSSEE Workshops" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FOSSEE Workshop Booking" />
+        <meta name="twitter:description" content="Organize and attend technical workshops supported by IIT Bombay." />
+        <meta name="twitter:site" content="@FOSSEE" />
       </Helmet>
       <Hero 
         title="Welcome to FOSSEE Workshops" 
