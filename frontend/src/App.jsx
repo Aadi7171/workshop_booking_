@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
+import Layout from './components/Layout';
 
 import Home from './pages/Home';
 import Statistics from './pages/Statistics';
