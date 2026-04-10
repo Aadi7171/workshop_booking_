@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 
+/**
+ * Propose Workshop Form Page
+ * 
+ * A semantic form interface allowing users to submit new workshop requests.
+ * Features strict label mapping and accessibility-optimized touch targets.
+ * 
+ * @returns {JSX.Element} The Proposal form component.
+ */
 const ProposeWorkshop = () => {
   const [formData, setFormData] = useState({
     workshopType: '',

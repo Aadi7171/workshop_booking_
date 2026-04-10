@@ -3,6 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 import { Clock, CheckCircle, XCircle } from 'lucide-react';
 
+/**
+ * Workshop Status Tracking Page
+ * 
+ * Provides real-time visibility into the lifecycle of workshop proposals.
+ * Uses color-coded cards and icons to represent state (Pending, Accepted, Rejected).
+ * 
+ * @returns {JSX.Element} The Status tracking page.
+ */
 const Status = () => {
   return (
     <div className="page-container fade-in">

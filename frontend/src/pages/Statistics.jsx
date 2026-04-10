@@ -3,6 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 import { BarChart2, PieChart } from 'lucide-react';
 
+/**
+ * Statistics Page
+ * 
+ * Displays graphical data and performance metrics for workshops.
+ * Uses Lucide icons for visual representation of data categories.
+ * 
+ * @returns {JSX.Element} The Statistics page layout.
+ */
 const Statistics = () => {
   return (
     <div className="page-container fade-in">
