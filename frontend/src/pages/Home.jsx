@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import Hero from '../components/Hero';
+import ActionCard from '../components/ActionCard';
 import './Pages.css';
 
 const Home = () => {
