@@ -17,16 +17,18 @@ const Home = () => {
       />
 
       <section className="dashboard-grid">
-        <div className="card glass">
-          <h2>Upcoming Workshops</h2>
-          <p>3 Scheduled this month</p>
-          <button>View Details</button>
-        </div>
-        <div className="card glass">
-          <h2>Your Proposals</h2>
-          <p>1 Pending approval</p>
-          <button className="secondary">Check Status</button>
-        </div>
+        <ActionCard 
+          title="Upcoming Workshops" 
+          description="3 Scheduled this month" 
+          buttonText="View Details" 
+          to="/status" 
+        />
+        <ActionCard 
+          title="Your Proposals" 
+          description="1 Pending approval" 
+          buttonText="Check Status" 
+          to="/status" 
+        />
         <div className="card glass highlight">
           <h2>Propose a Workshop</h2>
           <p>Organize a new event at your institute.</p>
