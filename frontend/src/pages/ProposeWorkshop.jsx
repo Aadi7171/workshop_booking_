@@ -69,14 +69,14 @@ const ProposeWorkshop = () => {
             />
           </div>
           
-          <div className="form-group">
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontWeight: 'normal' }}>
-              <input type="checkbox" required />
+          <div className="form-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+            <input type="checkbox" id="terms" required style={{ width: 'auto', padding: 0 }} />
+            <label htmlFor="terms" style={{ cursor: 'pointer', fontWeight: 'normal', margin: 0, fontSize: '0.9rem' }}>
               I accept the terms and conditions
             </label>
           </div>
 
-          <button type="submit" className="submit-btn">Submit Proposal</button>
+          <button type="submit" className="submit-btn" aria-label="Submit Workshop Proposal">Submit Proposal</button>
         </form>
       </div>
     </div>
