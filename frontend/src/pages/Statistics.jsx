@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 import { BarChart2, PieChart } from 'lucide-react';
+import StatCard from '../components/StatCard';
 
 /**
  * Statistics Page
