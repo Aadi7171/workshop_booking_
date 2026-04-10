@@ -1,89 +1,138 @@
 :root {
-  --primary: #4F46E5; /* Indigo */
-  --primary-hover: #4338CA;
-  --bg-color: #F8FAFC;
-  --card-bg: rgba(255, 255, 255, 0.85); /* Glassmorphism base */
-  --text-main: #1E293B;
-  --text-muted: #64748B;
-  --border: rgba(0, 0, 0, 0.05);
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-light: #e0e7ff;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --error: #ef4444;
+  --bg-main: #f8fafc;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.3);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius: 1rem;
+  --nav-height: 70px;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.5;
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.05) 0px, transparent 50%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism Classes */
+/* Glassmorphism */
 .glass {
   background: var(--card-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  border-radius: 12px;
+  border-radius: var(--radius);
 }
 
-/* Base UI Elements */
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: var(--primary);
+.glass-dark {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  padding: 0.75rem 1.5rem; /* Increased for mobile touch target a11y (>44px height) */
-  border-radius: 6px;
-  font-weight: 500;
-  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-button:hover {
-  background: var(--primary-hover);
+/* Global Transitions */
+*, *::before, *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
-button:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.4);
-}
-
+/* Accessibility & Layout */
 .container {
-  max-width: 1200px;
+  max-width: 640px; /* Optimized for mobile scanning */
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
-/* Typography */
-h1, h2, h3 {
-  color: var(--text-main);
-  margin-bottom: 0.5rem;
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+  }
 }
 
-p {
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-}
-
-/* Utility to add padding to bottom of page for mobile nav */
-.content-area {
-  padding-bottom: 80px; /* Space for bottom nav */
+.page-container {
+  padding-bottom: calc(var(--nav-height) + 2rem);
+  min-height: calc(100vh - var(--nav-height));
 }
 
 @media (min-width: 768px) {
-  .content-area {
+  .page-container {
+    padding-top: calc(var(--nav-height) + 1rem);
     padding-bottom: 2rem;
-    padding-top: 80px; /* Space for top nav */
   }
+}
+
+/* Typography */
+h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 0.5rem; line-height: 1.1; }
+h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); }
+h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+p { color: var(--text-secondary); margin-bottom: 1.25rem; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  gap: 0.5rem;
+  font-size: 1rem;
+  touch-action: manipulation;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+.btn-secondary {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* Input Fields */
+input, select, textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+input:focus {
+  outline: 2px solid var(--primary);
+  border-color: transparent;
 }
