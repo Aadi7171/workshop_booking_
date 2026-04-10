@@ -45,3 +45,8 @@ db.sqlite3
 #images/gif
 *.png
 *.gif
+
+# Frontend Build and Dependencies
+frontend/node_modules/
+frontend/dist/
+.env
