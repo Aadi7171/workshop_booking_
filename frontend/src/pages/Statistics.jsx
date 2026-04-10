@@ -46,14 +46,15 @@ const Statistics = () => {
           </div>
         </StatCard>
         
-        <div className="card glass highlight">
-          <h2>Top Performers</h2>
-          <ul style={{ paddingLeft: '1.25rem', marginTop: '0.5rem', color: 'var(--text-muted)' }}>
-            <li>Prof. Smith - 5 Workshops</li>
-            <li>Dr. Ada - 3 Workshops</li>
-            <li>Ms. Johnson - 2 Workshops</li>
-          </ul>
-        </div>
+        </StatCard>
+        
+        <PerformersList 
+          performers={[
+            { name: "Prof. Smith", count: 5 },
+            { name: "Dr. Ada", count: 3 },
+            { name: "Ms. Johnson", count: 2 }
+          ]}
+        />
       </div>
     </div>
   );
