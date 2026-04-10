@@ -29,11 +29,13 @@ const Home = () => {
           buttonText="Check Status" 
           to="/status" 
         />
-        <div className="card glass highlight">
-          <h2>Propose a Workshop</h2>
-          <p>Organize a new event at your institute.</p>
-          <button>Start Proposal</button>
-        </div>
+        <ActionCard 
+          title="Propose a Workshop" 
+          description="Organize a new event at your institute." 
+          buttonText="Start Proposal" 
+          to="/propose" 
+          highlight 
+        />
       </section>
     </div>
   );
