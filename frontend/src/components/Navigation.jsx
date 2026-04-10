@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BarChart2, PlusCircle, Activity } from 'lucide-react';
+import { Home, BarChart2, PlusCircle, Activity, Info } from 'lucide-react';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -32,6 +32,12 @@ const Navigation = () => {
           <NavLink to="/propose" title="Propose Workshop" className={({ isActive }) => (isActive ? 'active' : '')}>
             <PlusCircle size={24} aria-hidden="true" />
             <span>Propose</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/about" title="About" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <Info size={24} aria-hidden="true" />
+            <span>About</span>
           </NavLink>
         </li>
       </ul>
