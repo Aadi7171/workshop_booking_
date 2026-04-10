@@ -5,3 +5,17 @@ Thank you for your interest in contributing to the FOSSEE Workshop Portal! This 
 ## Code of Conduct
 
 By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Getting Started
+
+1. **Fork the repository** on GitHub.
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/workshop_booking_.git
+   ```
+3. **Install dependencies**:
+   ```bash
+   cd workshop_booking_/frontend
+   npm install
+   ```
+
