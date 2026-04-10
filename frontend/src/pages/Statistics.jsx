@@ -19,6 +19,14 @@ const Statistics = () => {
       <Helmet>
         <title>Statistics | FOSSEE Workshop Booking</title>
         <meta name="description" content="View technical workshop statistics, distribution formats, and top performing instructors." />
+        <meta property="og:title" content="Workshop Statistics | FOSSEE" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="Explore detailed data and insights from FOSSEE technical workshops across India." />
+        <meta property="og:site_name" content="FOSSEE Workshops" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="FOSSEE Workshop Insights" />
+        <meta name="twitter:description" content="Detailed analysis of workshop performance and audience reach." />
+        <meta name="twitter:site" content="@FOSSEE" />
       </Helmet>
       <div className="hero-section glass">
         <h1>Workshop Statistics</h1>
