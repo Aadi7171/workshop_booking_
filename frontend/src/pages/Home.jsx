@@ -1,9 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 
 const Home = () => {
   return (
     <div className="page-container fade-in">
+      <Helmet>
+        <title>Home | FOSSEE Workshop Booking</title>
+        <meta name="description" content="Welcome to the FOSSEE Workshops dashboard. Empowering education through free and open-source software." />
+      </Helmet>
       <header className="hero-section glass">
         <h1>Welcome to FOSSEE Workshops</h1>
         <p>Empowering education through free and open-source software.</p>

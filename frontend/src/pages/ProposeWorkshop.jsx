@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 
 const ProposeWorkshop = () => {
@@ -22,6 +23,10 @@ const ProposeWorkshop = () => {
 
   return (
     <div className="page-container fade-in">
+      <Helmet>
+        <title>Propose Workshop | FOSSEE Workshop Booking</title>
+        <meta name="description" content="Propose and organize a new technical workshop at your institute with FOSSEE." />
+      </Helmet>
       <div className="hero-section glass">
         <h1>Propose a Workshop</h1>
         <p>Fill out the form below to request a new workshop at your institute.</p>

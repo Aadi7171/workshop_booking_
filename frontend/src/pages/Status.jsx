@@ -1,10 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 import { Clock, CheckCircle, XCircle } from 'lucide-react';
 
 const Status = () => {
   return (
     <div className="page-container fade-in">
+      <Helmet>
+        <title>Workshop Status | FOSSEE Workshop Booking</title>
+        <meta name="description" content="Track the progress and status of your proposed and scheduled FOSSEE workshops." />
+      </Helmet>
       <div className="hero-section glass">
         <h1>Workshop Status</h1>
         <p>Track the progress of your proposed or assigned workshops.</p>

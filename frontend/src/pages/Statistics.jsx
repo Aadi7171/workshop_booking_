@@ -1,10 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import './Pages.css';
 import { BarChart2, PieChart } from 'lucide-react';
 
 const Statistics = () => {
   return (
     <div className="page-container fade-in">
+      <Helmet>
+        <title>Statistics | FOSSEE Workshop Booking</title>
+        <meta name="description" content="View technical workshop statistics, distribution formats, and top performing instructors." />
+      </Helmet>
       <div className="hero-section glass">
         <h1>Workshop Statistics</h1>
         <p>Insights and data from our latest workshops across the country.</p>
