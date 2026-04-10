@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import Hero from '../components/Hero';
+import FormInput from '../components/FormInput';
+import FormSelect from '../components/FormSelect';
+import FormTextArea from '../components/FormTextArea';
 import './Pages.css';
 
 /**
@@ -35,52 +39,43 @@ const ProposeWorkshop = () => {
         <title>Propose Workshop | FOSSEE Workshop Booking</title>
         <meta name="description" content="Propose and organize a new technical workshop at your institute with FOSSEE." />
       </Helmet>
-      <div className="hero-section glass">
-        <h1>Propose a Workshop</h1>
-        <p>Fill out the form below to request a new workshop at your institute.</p>
-      </div>
+      <Hero 
+        title="Propose a Workshop" 
+        subtitle="Fill out the form below to request a new workshop at your institute." 
+      />
 
       <div className="card glass form-container">
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="workshopType">Workshop Type</label>
-            <select 
-              id="workshopType" 
-              name="workshopType" 
-              value={formData.workshopType} 
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select a type...</option>
-              <option value="python">Python Programming</option>
-              <option value="linux">Linux Administration</option>
-              <option value="web">Web Development</option>
-            </select>
-          </div>
+          <FormSelect 
+            label="Workshop Type" 
+            id="workshopType" 
+            value={formData.workshopType} 
+            onChange={handleChange} 
+            required 
+            options={[
+              { value: 'python', label: 'Python Programming' },
+              { value: 'linux', label: 'Linux Administration' },
+              { value: 'web', label: 'Web Development' }
+            ]}
+            helpText="Select the category that best fits your proposed session."
+          />
 
-          <div className="form-group">
-            <label htmlFor="date">Proposed Date</label>
-            <input 
-              type="date" 
-              id="date" 
-              name="date" 
-              value={formData.date} 
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <FormInput 
+            label="Proposed Date" 
+            id="date" 
+            type="date" 
+            value={formData.date} 
+            onChange={handleChange} 
+            required 
+          />
 
-          <div className="form-group">
-            <label htmlFor="comments">Additional Comments</label>
-            <textarea 
-              id="comments" 
-              name="comments" 
-              rows="4" 
-              value={formData.comments} 
-              onChange={handleChange}
-              placeholder="Any specific requirements or notes?"
-            />
-          </div>
+          <FormTextArea 
+            label="Additional Comments" 
+            id="comments" 
+            value={formData.comments} 
+            onChange={handleChange} 
+            placeholder="Any specific requirements or notes?" 
+          />
           
           <div className="form-group" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
             <input type="checkbox" id="terms" required style={{ width: 'auto', padding: 0 }} />
