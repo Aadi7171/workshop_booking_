@@ -11,10 +11,10 @@ const Home = () => {
         <title>Home | FOSSEE Workshop Booking</title>
         <meta name="description" content="Welcome to the FOSSEE Workshops dashboard. Empowering education through free and open-source software." />
       </Helmet>
-      <header className="hero-section glass">
-        <h1>Welcome to FOSSEE Workshops</h1>
-        <p>Empowering education through free and open-source software.</p>
-      </header>
+      <Hero 
+        title="Welcome to FOSSEE Workshops" 
+        subtitle="Empowering education through free and open-source software." 
+      />
 
       <section className="dashboard-grid">
         <div className="card glass">
