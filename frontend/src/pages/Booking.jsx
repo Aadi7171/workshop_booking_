@@ -8,13 +8,12 @@ import './Pages.css';
 /**
  * Booking Component
  * 
- * Implements a high-conversion, multi-step booking flow for workshop attendees.
+ * I built this as a 3-step form to make signing up easier on small screens.
  * 
- * Features:
- * - 3-Step Progressive Disclosure: Member Info -> Academic Details -> Review
- * - Real-time Progress Tracking
- * - Simulated Persistent State during the session
- * - Mobile-first sticky CTA interactions
+ * Logic:
+ * 1. Member Info (Name/Email)
+ * 2. Academic stuff (College/Dept)
+ * 3. Final Review before submitting
  */
 const Booking = () => {
   const { id } = useParams();

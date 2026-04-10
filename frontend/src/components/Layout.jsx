@@ -7,9 +7,9 @@ import './Layout.css';
 /**
  * Layout Component
  * 
- * Provides the structural framework for the application.
- * Manages semantic HTML5 landmarks (nav, main, footer) and provides 
- * a consistent container for all page-level content.
+ * This is the main frame for the SPA. It handles the 
+ * standard navigation, the main content area, and the footer.
+ * I used semantic tags like <main> for better accessibility.
  */
 const Layout = ({ children }) => {
   return (

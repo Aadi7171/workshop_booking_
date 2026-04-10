@@ -8,12 +8,9 @@ import './Pages.css';
 /**
  * Workshops Component
  * 
- * Serves as the primary discovery hub for students.
- * 
- * Features:
- * - Real-time keyword filtering (search bar)
- * - Responsive grid layout for workshop cards
- * - Empty state handling for zero search results
+ * The main workshop discovery page. I added a real-time search 
+ * filter here so students can find specific topics like 'Python' 
+ * or 'Django' quickly without scrolling through a huge list.
  */
 const Workshops = () => {
   const [searchTerm, setSearchTerm] = useState('');
