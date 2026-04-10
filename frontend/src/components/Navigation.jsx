@@ -40,6 +40,12 @@ const Navigation = () => {
             <span>About</span>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/faq" title="FAQ" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <HelpCircle size={24} aria-hidden="true" />
+            <span>FAQ</span>
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
