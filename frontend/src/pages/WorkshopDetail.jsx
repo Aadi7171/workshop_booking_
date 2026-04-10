@@ -5,6 +5,15 @@ import { Calendar, User, Clock, MapPin, CheckCircle, ArrowLeft } from 'lucide-re
 import { WORKSHOPS } from '../data/workshops';
 import './Pages.css';
 
+/**
+ * WorkshopDetail Component
+ * 
+ * A conversion-optimized landing page for a specific workshop.
+ * Features:
+ * - High-impact content section with curriculum details.
+ * - Glassmorphism sidebar with booking information.
+ * - Sticky mobile CTA to ensure conversion accessibility on small screens.
+ */
 const WorkshopDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();

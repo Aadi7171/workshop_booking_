@@ -15,6 +15,12 @@ import About from './pages/About';
 import FAQ from './pages/FAQ';
 import Confirmation from './pages/Confirmation';
 
+/**
+ * App Component
+ * 
+ * The main entry point for the Workshop Booking SPA.
+ * Handles top-level routing, layout wrapping, and dynamic SEO metadata providers.
+ */
 function App() {
   return (
     <HelmetProvider>
