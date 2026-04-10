@@ -25,27 +25,25 @@ const Statistics = () => {
       </div>
 
       <div className="dashboard-grid">
-        <div className="card glass">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>
-            <BarChart2 size={24} />
-            <h2 style={{ margin: 0 }}>Monthly Count</h2>
-          </div>
-          <p>Total workshops conducted this month: <strong>12</strong></p>
+        <StatCard 
+          icon={BarChart2} 
+          title="Monthly Count" 
+          value={<span>Total workshops: <strong>12</strong></span>}
+        >
           <div style={{ height: '150px', width: '100%', background: 'rgba(79, 70, 229, 0.05)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)'}}>
             [ Bar Chart Placeholder ]
           </div>
-        </div>
+        </StatCard>
 
-        <div className="card glass">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>
-            <PieChart size={24} />
-            <h2 style={{ margin: 0 }}>Workshops by Type</h2>
-          </div>
-          <p>Distribution of topics</p>
+        <StatCard 
+          icon={PieChart} 
+          title="Workshops by Type" 
+          value="Distribution of topics"
+        >
           <div style={{ height: '150px', width: '100%', background: 'rgba(79, 70, 229, 0.05)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)'}}>
             [ Pie Chart Placeholder ]
           </div>
-        </div>
+        </StatCard>
         
         <div className="card glass highlight">
           <h2>Top Performers</h2>
