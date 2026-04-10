@@ -1,0 +1,84 @@
+:root {
+  --primary: #4F46E5; /* Indigo */
+  --primary-hover: #4338CA;
+  --bg-color: #F8FAFC;
+  --card-bg: rgba(255, 255, 255, 0.85); /* Glassmorphism base */
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --border: rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism Classes */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+}
+
+/* Base UI Elements */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Typography */
+h1, h2, h3 {
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Utility to add padding to bottom of page for mobile nav */
+.content-area {
+  padding-bottom: 80px; /* Space for bottom nav */
+}
+
+@media (min-width: 768px) {
+  .content-area {
+    padding-bottom: 2rem;
+    padding-top: 80px; /* Space for top nav */
+  }
+}
