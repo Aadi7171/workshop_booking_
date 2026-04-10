@@ -19,3 +19,17 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
    npm install
    ```
 
+## Development Workflow
+
+1. **Create a feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+2. **Make your changes**. Ensure you follow the coding style and include JSDoc where necessary.
+3. **Commit your changes** with descriptive messages:
+   ```bash
+   git commit -m "feat: add amazing new feature"
+   ```
+4. **Push to your fork** and **submit a Pull Request**.
+
+
