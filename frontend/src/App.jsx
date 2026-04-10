@@ -9,6 +9,7 @@ import Statistics from './pages/Statistics';
 import Status from './pages/Status';
 import ProposeWorkshop from './pages/ProposeWorkshop';
 import About from './pages/About';
+import FAQ from './pages/FAQ';
 
 function App() {
   return (
