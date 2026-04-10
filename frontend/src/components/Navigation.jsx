@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BarChart2, PlusCircle, Activity, Info } from 'lucide-react';
+import { Home, BarChart2, PlusCircle, Activity, Info, HelpCircle } from 'lucide-react';
 import './Navigation.css';
 
 const Navigation = () => {
