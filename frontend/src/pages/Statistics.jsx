@@ -46,7 +46,6 @@ const Statistics = () => {
           </div>
         </StatCard>
         
-        </StatCard>
         
         <PerformersList 
           performers={[
