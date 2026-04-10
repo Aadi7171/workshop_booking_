@@ -1,93 +1,141 @@
-# FOSSEE Workshop Portal: Student Redesign
+# FOSSEE Workshop Portal: Redesign
 
-### 📺 [Watch the 20-second Booking Demo](./docs/recordings/demo.webp)
-![Live Demo Walkthrough](./docs/recordings/demo.webp)
+### 📺 Live Demo Walkthrough
+[![Live Demo Walkthrough](./docs/recordings/demo.webp)](./docs/recordings/demo.webp)
 
-I redesigned our basic workshop website to make it faster and easier for students to find and book technical workshops. I focused on a clean, mobile-first UI and a simple booking process that doesn't feel like filling out tax forms.
+A mobile-first student platform for discovering and booking technical workshops faster and with less friction. Built for the FOSSEE UI/UX Enhancement screening task.
 
 ---
 
-## 🛠️ How to run the project
+## 🛠️ Local Setup
 
-### 1. Frontend (React + Vite)
-1. **Go to the frontend folder**: `cd frontend`
-2. **Install what's needed**: `npm install`
-3. **Start the dev server**: `npm run dev`
+### Frontend
+1. Go to the frontend folder: `cd frontend`
+2. Install dependencies: `npm install`
+3. Start the dev server: `npm run dev`
+4. Build for production: `npm run build`
 
-### 2. Backend (Django)
-1. **Setup a virtual environment**:
+### Backend
+1. Create a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate  # Windows: venv\Scripts\activate
    ```
-2. **Install the requirements**: `pip install -r requirements.txt`
-3. **Config**: Copy `.sampleenv` to a new file named `.env`.
-4. **Database**: Run `python manage.py migrate`
-5. **Start server**: Run `python manage.py runserver`
+2. Install backend dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Copy `.sampleenv` to `.env` and set your database and secret key values.
+4. Run migrations:
+   ```bash
+   python manage.py migrate
+   ```
+5. Start the server:
+   ```bash
+   python manage.py runserver
+   ```
 
 ---
 
-## 🏗️ Folder Structure
+## 🏗️ Project Structure
 
 ```text
 .
-├── workshop_portal/       # Django config and settings
-├── workshop_app/          # Workshop logic (the main backend app)
-├── statistics_app/        # Stats and reporting logic
-├── cms/                   # Content management
-├── frontend/              # The new React SPA (Vite)
+├── workshop_portal/       # Core Django project configuration
+├── workshop_app/          # Workshop management and booking logic
+├── statistics_app/        # Reporting and analytics
+├── cms/                   # Content management features
+├── frontend/              # React + Vite student-facing UI
 │   ├── src/
-│   │   ├── components/    # Small UI pieces (Buttons, Cards, etc.)
-│   │   ├── pages/         # Different pages (Home, Workshops, Booking)
-│   │   └── data/          # Local workshop data for the frontend
-└── docs/                  # Screenshots and the demo video
+│   │   ├── components/    # Reusable UI pieces
+│   │   ├── pages/         # Route-level pages
+│   │   └── data/          # Mock data for UI development
+└── docs/                  # Screenshots and demo assets
 ```
 
 ---
 
-## 📸 Before and After
+## 📸 Visual Showcase
 
-### 📋 Main Page
-| Before (Dashboard style) | After (Student Landing) |
+### Home / Landing Page
+
+| Before | After |
 | :---: | :---: |
 | ![Original Home](./docs/screenshots/before_home.png) | ![Redesigned Home](./docs/screenshots/after_home.png) |
 
-### 🔍 Finding & Booking
-| Discovery Grid | 3-Step Booking Form |
+### Workshop Discovery & Booking
+
+| Discovery | Booking Flow |
 | :---: | :---: |
-| ![Workshops List](./docs/screenshots/after_discovery.png) | ![Booking Flow](./docs/screenshots/after_booking.png) |
+| ![Workshops List](./docs/screenshots/after_discovery.png) | ![Booking Stepper](./docs/screenshots/after_booking.png) |
 
 ---
 
-## 🧠 Why I made these changes
+## 🧠 Design Rationale
 
-### 1. What was the goal?
-I wanted to make the site as easy as possible for students. The old site felt more like an admin dashboard. I cut out all the extra links and simplified the home page so you can find a workshop and book it in a few clicks. I used a "Discovery -> Detail -> Book" path so users don't get lost.
+### 1. What design principles guided your improvements?
+The original site works, but it was clearly built around organizers and instructors. For students, the path to a workshop was not obvious. My main goal was to make the next step clear on every screen.
 
-### 2. How does it work on mobile?
-Most students check these sites on their phones between classes. 
-- **Thumb Menu**: I put the main menu at the bottom where your thumb can actually reach it. 
-- **No Tables**: Tables are terrible on phone screens. I used vertical cards instead so you can just scroll through them.
-- **Always-on "Book" button**: On the detail page, I added a sticky button at the bottom so you don't have to scroll all the way back up to sign up.
+I focused on clarity, hierarchy, and fewer distractions. Each page has one main action: discover workshops, view details, then book. I used spacing, typography, and button emphasis to guide attention instead of packing everything into one screen.
+
+For the visual style, I used dark indigo tones, frosted cards, and simple motion to make the interface feel modern without making it busy. I also kept the system font stack so the page loads quickly and feels native across devices.
+
+### 2. How did you ensure responsiveness across devices?
+I built the UI mobile-first, so the smallest screens define the base layout and larger screens add more structure on top. That made it easier to keep the interface readable on phones, which is the main target for this project.
+
+I replaced desktop-style navigation with a bottom tab bar on mobile so the main actions are easier to reach with one hand. I also avoided fixed widths and used flexible layouts so cards, grids, and forms adapt naturally to different screen sizes.
+
+For content-heavy areas, I used stacked cards instead of horizontal tables. That keeps scrolling simple and prevents the user from having to zoom or swipe sideways.
+
+### 3. What trade-offs did you make between design and performance?
+I used a light glassmorphism effect, but kept it limited to card surfaces so it would not affect the whole page. That keeps the design polished without overloading weaker devices.
+
+I also avoided heavy UI libraries because they would add unnecessary weight for a task like this. Writing the styles in plain CSS took more time, but it gave me more control and kept the build lean.
+
+Animations were kept simple and CSS-based. That way the interface feels smooth without relying on JavaScript for motion.
+
+### 4. What was the most challenging part of the task and how did you approach it?
+The hardest part was balancing the existing organizer flow with the new student flow. I did not want to break the original structure, but I also needed to make the student journey feel complete and intentional.
+
+To handle that, I kept the existing organizer pages accessible through their original paths and introduced the new student-facing experience through React routes. That let me modernize the interface without forcing both user types into the same navigation pattern.
+
+The main challenge was making the navigation feel coherent for both audiences. I solved that by giving students a simple bottom tab bar and keeping organizer actions in a separate, less intrusive area.
 
 ---
 
-## ♿ Accessibility & SEO
+## ♿ Accessibility
 
-- **Easy to read**: I checked the contrast of all my colors to make sure text is clear. I didn't use any tiny fonts.
-- **Screen Readers**: I used proper HTML tags (main, nav, footer) and added ARIA labels to my icons so screen readers know what they are.
-- **Google Search**: I used `react-helmet-async` so every page has its own title and description. This helps with SEO.
-
----
-
-## 📜 Git History
-
-I kept my commits small and organized using a standard naming style (`feat:`, `style:`, `docs:`). This makes it easy to see the project's progress step-by-step instead of just pushing everything in one huge "Initial Commit."
+- Semantic landmarks are used for better screen reader navigation.
+- Text contrast is kept high for readability.
+- Interactive elements have clear labels.
+- Touch targets are sized for mobile use.
+- Navigation is designed to work well on small screens and with keyboard input.
 
 ---
 
-## 📝 Documenting the Code
-I used JSDoc comments for the main logic (like the booking form steps and the search filters). This makes it easier for other developers to understand how the data flows or if we need to change something later.
+## 🔎 SEO
+
+- Unique page titles and metadata are set for each route.
+- Heading structure is kept semantic and predictable.
+- The React pages use meaningful content structure for better crawlability.
 
 ---
-*Made for the FOSSEE Screening Task.*
+
+## 📜 Git Workflow
+
+I followed a conventional commit style to keep the history readable:
+- `feat:` for new features.
+- `style:` for UI and CSS updates.
+- `docs:` for README and asset changes.
+
+The work is split into smaller commits instead of one large dump, so the progress is easier to review.
+
+---
+
+## 📝 Documentation
+
+Key logic such as the booking stepper and filtering behavior is documented with JSDoc where needed to keep the code easier to understand and maintain.
+
+---
+
+*Built for the FOSSEE screening task with a focus on usability, responsiveness, and clean execution.*
