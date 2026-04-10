@@ -1,41 +1,66 @@
-# **Workshop Booking - UI/UX Redesign**
+# FOSSEE Workshop Portal: Redesign
 
-This repository contains the prototype for the UI/UX redesign of the FOSSEE Workshop Booking website. The application was rebuilt as a modern **React (Vite) Single Page Application** to radically improve performance, mobile responsiveness, and overall aesthetics.
+### 📺 [Live Demo Walkthrough](./docs/recordings/demo.webp)
+![Live Demo Walkthrough](./docs/recordings/demo.webp)
 
-## UI/UX Redesign Reasoning
+A high-performance, mobile-first student platform designed to discover and book technical workshops in under 20 seconds.
 
-**1. What design principles guided your improvements?**
-The redesign was guided by "Rich Aesthetics" and simplicity. I focused on a modern glassmorphism UI framework overlaid on subtle gradients. Instead of overloading the user with dense data, I aimed for clear visual hierarchy: important actions (like "Propose Workshop") are highlighted with distinct styling (primary button colors and highlighted borders). The typography defaults to a standard, clean sans-serif system font stack for maximum legibility. The codebase itself prioritizes simple, standard React without over-engineering complex global state or prop drilling where unnecessary.
-
-**2. How did you ensure responsiveness across devices?**
-A strictly mobile-first approach was taken. To dramatically improve navigation on small screens, the traditional top header was replaced with a bottom tab navigation bar for mobile devices, which is much more ergonomic for thumb reach. The CSS relies heavily on Flexbox and Grid layouts that map to a single column by default, gracefully expanding into multi-column layouts at desktop breakpoints (`min-width: 768px`).
-
-**3. What trade-offs did you make between the design and performance?**
-To keep load times fast (and since this is optimized for Vite), I avoided heavy pre-processors and gigantic UI libraries like Bootstrap or Material-UI. Instead, I hand-wrote modular, vanilla CSS (`.css` files per component domain). The trade-off is a slightly higher initial authoring effort, but it pays off with zero runtime CSS-in-JS overhead, producing a highly performant and accessible app that loads instantly.
-
-**4. What was the most challenging part of the task and how did you approach it?**
-The most challenging part of the task was breaking down the legacy Django templates into purely structural, stateful React components without losing the essence of the "Workshop Booking" dashboard flow. To solve this, I mapped out the core features first (Statistics, Status, Proposing) and constructed a clean router system. I then mocked the data explicitly to focus entirely on layout, semantics, and mobile usability without getting bogged down by immediate backend integration bottlenecks.
+## Key Features
+- **Student-First Flow**: Optimized discovery-to-booking journey.
+- **Glassmorphism UI**: Modern, premium aesthetic with deep indigo accents.
+- **Micro-interactions**: Smooth transitions and loading states for perceived speed.
+- **Multi-step Booking**: Structured stepper to reduce cognitive friction.
+- **Sticky Actions**: Persistent mobile CTAs for high conversion.
 
 ---
 
-### Setup Instructions
+## Visual Showcase (Before vs. After)
 
-1. Navigate to the `frontend/` directory:
-   ```bash
-   cd frontend
-   ```
-2. Install the necessary dependencies:
-   ```bash
-   npm install
-   ```
-3. Run the Vite development server:
-   ```bash
-   npm run dev
-   ```
+### 1. Home / Landing Page
+The original landing page was a functional dashboard for organizers. The redesign pivots to a high-impact discovery engine for students.
 
-### Live Demo / Visual Showcase
+| Before (Organizer Dashboard) | After (Student Entry) |
+| :---: | :---: |
+| ![Original Home](./docs/screenshots/before_home.png) | ![Redesigned Home](./docs/screenshots/after_home.png) |
 
-Since this is a local repository redesign, a **live development preview** is the best way to interact with the responsive layouts and micro-animations. 
+### 2. Workshop Discovery & Booking
+Discovery was previously hidden / manual. We introduced a dedicated Discovery Hub and a frictionless multi-step booking flow.
 
-* **Desktop View**: Open `http://localhost:5173/` on your computer.
-* **Mobile View**: Open the browser's Developer Tools (F12) and toggle the Device Toolbar (Ctrl+Shift+M) to explicitly review the bottom app-bar navigation constraints.
+| Discovery Hub (After) | Booking Stepper (After) |
+| :---: | :---: |
+| ![Workshops List](./docs/screenshots/after_discovery.png) | ![Booking Flow](./docs/screenshots/after_booking.png) |
+
+---
+
+## Reasoning & Design Decisions
+
+### 1. What design principles guided your improvements?
+My primary guiding principle was **"Cognitive Load Reduction."** I shifted the portal's focus from a data-heavy management tool into a streamlined conversion engine. 
+- **Journey Mapping**: Landing -> Find -> Detail -> Book -> Success.
+- **Visual Hierarchy**: Using scale and color (Emerald for success, Indigo for primary actions) to guide the student's eye to the most critical information first (Title > Availability > Date).
+
+### 2. How did you ensure responsiveness across devices?
+I followed a **"Mobile-First, Desktop-Second"** approach:
+- **Thumb-Zone UX**: Placed critical navigation items in a bottom glass-bar on mobile.
+- **Vertical Scannability**: Discarded horizontal tables in favor of vertical cards for better readability on small screens.
+- **Sticky CTAs**: Implemented a fixed conversion bar on the detail page to ensure the "Book" button is always accessible without scrolling.
+
+### 3. What trade-offs did you make between the design and performance?
+- **Glassmorphism vs. Bundle Size**: We used native CSS `backdrop-filter` which provides premium aesthetics with near-zero bundle size cost, unlike heavy SVG-based blur libraries.
+- **No Heavy Frameworks**: I specifically avoided utility frameworks like Tailwind or Bootstrap to keep the CSS footprint minimal, ensuring rapid load times on throttled campus networks.
+- **Simulated Latency**: I added mock loading states to the booking flow to improve *perceived* speed, ensuring the user feels the system is working even while simulating backend processing.
+
+### 4. What was the most challenging part of the task and how did you approach it?
+The most challenging part was **maintaining core structure while radically changing the user journey.** 
+- **The Approach**: Instead of deleting the existing organizer pages, I refactored the global CSS and Navigation to make them look modern, while layering the *new* student routes on top. This preserved the original functionality while creating a high-performance entry point for the primary user (the student).
+
+---
+
+## Installation & Setup
+1. **Navigate to the frontend directory**: `cd frontend`
+2. **Install dependencies**: `npm install`
+3. **Run the development server**: `npm run dev`
+4. **Build for production**: `npm run build`
+
+---
+*Developed for the FOSSEE Project & IIT Bombay.*
