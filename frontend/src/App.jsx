@@ -21,6 +21,7 @@ function App() {
           <Route path="/status" element={<Status />} />
           <Route path="/propose" element={<ProposeWorkshop />} />
           <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </Layout>
     </HelmetProvider>
