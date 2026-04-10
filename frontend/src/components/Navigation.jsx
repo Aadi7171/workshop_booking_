@@ -11,26 +11,26 @@ const Navigation = () => {
       </div>
       <ul className="nav-links">
         <li>
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <Home size={24} />
+          <NavLink to="/" title="Home" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <Home size={24} aria-hidden="true" />
             <span>Home</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/statistics" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <BarChart2 size={24} />
+          <NavLink to="/statistics" title="Statistics" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <BarChart2 size={24} aria-hidden="true" />
             <span>Stats</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/status" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <Activity size={24} />
+          <NavLink to="/status" title="Status" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <Activity size={24} aria-hidden="true" />
             <span>Status</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/propose" className={({ isActive }) => (isActive ? 'active' : '')}>
-            <PlusCircle size={24} />
+          <NavLink to="/propose" title="Propose Workshop" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <PlusCircle size={24} aria-hidden="true" />
             <span>Propose</span>
           </NavLink>
         </li>
