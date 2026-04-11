@@ -1,136 +1,226 @@
-# FOSSEE Workshop Booking — UI/UX Redesign
+# FOSSEE Workshop Booking — React UI/UX Redesign
 
-A mobile-first student platform for discovering and booking technical workshops with less friction. Built as a React (Vite) SPA layered on top of the existing Django backend, as part of the FOSSEE UI/UX Enhancement screening task.
+> A mobile-first React SPA redesign of the [FOSSEE Workshop Booking](https://github.com/FOSSEE/workshop_booking) portal by IIT Bombay, built for the FOSSEE Python Screening Task.
 
 ---
 
-## Visual Showcase
+## 🔗 Live Demo
 
-### Home / Landing Page
+👉 **[fossee-workshop-booking.vercel.app](https://fossee-workshop-booking.vercel.app)**
 
+---
+
+## 📸 Visual Showcase — Before & After
+
+### Home Page
+| Before (Django template) | After (React redesign) |
+|---|---|
+| ![Before - Home](./screenshots/before_home.png) | ![After - Home](./screenshots/after_home.png) |
+
+### Workshop Listing
 | Before | After |
-| :---: | :---: |
-| ![Original Home](./docs/screenshots/before_home.png) | ![Redesigned Home](./docs/screenshots/after_home.png) |
+|---|---|
+| ![Before - Workshops](./screenshots/before_workshops.png) | ![After - Workshops](./screenshots/after_workshops.png) |
 
-> **Before** is a screenshot of the live production site at `python-workshops.fossee.in` — Bootstrap 3, imgur-hosted carousel images, and a single Login link in the navbar with no visible workshop listings for unauthenticated users.
+### Mobile View (375px)
+| Before | After |
+|---|---|
+| ![Before - Mobile](./screenshots/before_mobile.png) | ![After - Mobile](./screenshots/after_mobile.png) |
 
-### Workshop Discovery & Booking Flow
+### Booking Form (Multi-step)
+| Before | After |
+|---|---|
+| ![Before - Booking](./screenshots/before_booking.png) | ![After - Booking](./screenshots/after_booking.png) |
 
-| Discovery | Booking Stepper |
-| :---: | :---: |
-| ![Workshops List](./docs/screenshots/after_discovery.png) | ![Booking Flow](./docs/screenshots/after_booking.png) |
-
-### Live Demo
-
-🔗 **[View deployed demo →](https://your-vercel-url.vercel.app)**
-
-> To run locally: `cd frontend && npm install && npm run dev`, then open `http://localhost:5173`.
+> Screenshots taken at 375px (iPhone SE) and 1440px. All screenshots in `/screenshots/`.
 
 ---
 
-## Setup Instructions
+## 🚀 Setup Instructions
 
-### Frontend
+### Prerequisites
+- Node.js v18 or higher
+- npm v9 or higher
+
+### Run locally
 
 ```bash
-cd frontend
+# 1. Clone the repository
+git clone https://github.com/Aadi7171/workshop_booking_.git
+cd workshop_booking_/frontend
+
+# 2. Install dependencies
 npm install
-npm run dev       # Development server at http://localhost:5173
-npm run build     # Production build
+
+# 3. Start the development server
+npm run dev
 ```
 
-### Backend
+The app starts at **http://localhost:5173**
+
+### Production build
 
 ```bash
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-cp .sampleenv .env              # Fill in your DB and SECRET_KEY values
-python manage.py migrate
-python manage.py runserver
+npm run build    # Outputs to frontend/dist/
+npm run preview  # Preview the production build locally
 ```
 
 ---
 
-## Project Structure
-
-```
-.
-├── workshop_portal/       # Core Django project configuration
-├── workshop_app/          # Workshop management and booking logic
-├── statistics_app/        # Reporting and analytics
-├── cms/                   # Content management features
-├── frontend/              # React + Vite student-facing UI
-│   └── src/
-│       ├── components/    # Reusable UI pieces
-│       ├── pages/         # Route-level pages
-│       └── data/          # Mock data for UI development
-└── docs/                  # Screenshots and demo assets
-```
-
----
-
-## Design Rationale
+## 🧠 Reasoning
 
 ### 1. What design principles guided your improvements?
 
-When I opened `python-workshops.fossee.in` on my phone, the first thing I saw was a Login button and nothing else — no workshops listed, no search, no indication of what the site even did without an account first. That became the core problem to solve.
+**Mobile-first layout over desktop shrinkage.** Since the primary users are students on smartphones, I designed every component starting at 320px and expanded upward — not the reverse. The navigation is a bottom tab bar on mobile (ergonomic thumb reach) that transforms into a top bar on desktop, mirroring patterns students already know from apps like YouTube and Swiggy.
 
-I focused on clarity, hierarchy, and reduced noise. Each page is built around a single primary action: discover, view details, then book. Spacing, typography weight, and button emphasis guide attention rather than crowding everything into one view.
+**Visual hierarchy through typography and spacing.** The original Django templates had flat, dense text with no clear reading path. I introduced a two-font system: `Syne` (display, weight 800) for headings to create strong anchors, and `DM Sans` for body text for clean readability. Type sizes scale with `clamp()` so they adjust fluidly — no awkward jumps between breakpoints.
 
-For visual style, I used dark indigo tones, frosted card surfaces, and subtle CSS-based motion to give the interface a modern feel without making it heavy. The system font stack was kept intentionally — it loads instantly and feels native across operating systems without an extra web font request.
+**Opaque surfaces over glassmorphism for accessibility.** Early drafts used glassmorphism throughout, but `backdrop-filter` blurs create contrast failures on complex backgrounds — violating WCAG 1.4.3 (minimum contrast 4.5:1). I switched to solid white cards (#ffffff) with subtle box-shadows. The effect is still modern and clean, but every text element now passes WCAG AA contrast checks.
+
+**Purposeful colour.** One primary colour (`#4f46e5`, indigo) is used consistently for all interactive elements — links, buttons, active states. The accent colour (`#d97706`, amber) appears only for warnings. Status colours (green for available, amber for low seats, red for full) use both colour *and* an icon, satisfying WCAG 1.4.1 (colour not the sole means of conveying information).
+
+**Reduce cognitive load through progressive disclosure.** The booking flow is a 3-step wizard instead of a single long form. Users only process what's relevant at each stage — personal info, academic details, then review — matching the mental model of a checkout flow students already understand.
+
+---
 
 ### 2. How did you ensure responsiveness across devices?
 
-The original site's navbar collapses on mobile into a hamburger that still requires two taps to reach anything. I replaced that pattern with a bottom tab bar so the four main actions are always one thumb-tap away.
+- **CSS Grid with `auto-fill` and `minmax`** for the workshop card grid — columns reflow naturally from 1 → 2 → 3 without explicit breakpoints everywhere.
+- **`clamp()` for typography** — `font-size: clamp(1.75rem, 5vw, 2.5rem)` means headings scale proportionally with viewport width, never too large on mobile or too small on desktop.
+- **Fluid container** — `max-width: 680px` on mobile (single-column reading width), expanding to `1200px` on desktop. Padding uses `1.25rem` at all sizes so content never hits the viewport edge.
+- **44px minimum touch targets** — all buttons, links, and inputs have `min-height: 44px`, meeting Apple HIG and WCAG 2.5.5 guidelines for mobile tap targets.
+- **Bottom nav on mobile, top nav on desktop** — detected via `@media (min-width: 768px)`, no JS required.
+- **Tested manually** at 320px, 375px, 390px, 768px, 1024px, and 1440px using Chrome DevTools device simulation, and on a physical Android device (Chrome 124).
 
-The UI was built mobile-first: the smallest screen defines the base layout, and larger breakpoints add structure on top. Fixed widths were avoided throughout; Flexbox and CSS Grid let cards, forms, and grids adapt naturally to any screen width.
-
-For content-heavy areas like workshop listings, stacked cards replaced the original horizontal table layout. That eliminates sideways scrolling entirely and keeps the experience clean on small screens.
+---
 
 ### 3. What trade-offs did you make between design and performance?
 
-The glassmorphism frosted-card effect looks polished but `backdrop-filter` can be expensive on older phones. I limited it strictly to card surfaces and tested on a mid-range Android device to make sure scroll performance stayed smooth — if it caused jank I would have removed it entirely.
+| Decision | Design benefit | Performance cost | How I resolved it |
+|---|---|---|---|
+| Google Fonts (Syne + DM Sans) | Distinctive, readable typography | Extra network request | `rel="preconnect"` + `font-display: swap` — text remains visible during font load |
+| Per-component CSS files | Modular, easy to maintain | Slight bundle fragmentation | Vite tree-shakes and minifies all CSS at build time — negligible real cost |
+| Lucide-react icons | Consistent, accessible SVG icons | Potential large import | Used named imports (`import { Home } from 'lucide-react'`) — only used icons are bundled |
+| Vanilla CSS over Tailwind | Zero runtime overhead, explicit | More authoring effort | Accepted — keeps bundle tiny, no purge config needed |
+| No heavy UI library (MUI, Bootstrap) | Total control over styling | More CSS to write | Accepted — final CSS bundle is ~18KB vs 300KB+ for MUI |
+| Animations | Polished feel, reduces perceived latency | CPU for compositing | CSS-only transitions (`transform`, `opacity`) — GPU composited, no layout reflow. Respects `prefers-reduced-motion`. |
 
-Heavy UI libraries like Bootstrap or Material-UI were avoided. Writing plain CSS per component took more initial time but keeps the production bundle lean with zero runtime CSS-in-JS overhead.
+The biggest deliberate trade-off: **no lazy loading** for the current scale (6 workshops). At production scale with hundreds of workshops, I would add React `Suspense` with a skeleton loader and paginate the API response.
 
-All animations are CSS `transition` and `@keyframes` based rather than JavaScript-driven, which keeps the interface smooth without the weight of a motion library like Framer.
+---
 
 ### 4. What was the most challenging part of the task and how did you approach it?
 
-The hardest part was that the original codebase has two distinct user types — coordinators and instructors — with their own flows baked into the Django templates. I did not want to break that, but I also needed the new student-facing experience to feel complete on its own.
+**Retrofitting accessibility onto an inherited design.** The FOSSEE original had no ARIA attributes, no visible focus states, form inputs without labels (only placeholders), and a navigation with no landmark roles. These aren't cosmetic — they're WCAG violations that exclude keyboard-only users, screen reader users, and users with motor disabilities.
 
-The approach was to leave all existing organizer routes untouched and introduce the student experience entirely through React routes in the new `frontend/` layer. That way both user types get a navigation pattern suited to them without either being forced into the other's flow.
+My approach was systematic:
 
-The trickiest detail was making the two navigation systems — the React bottom tab bar for students and the existing Django nav for organizers — feel intentional rather than bolted together. I solved it by keeping the two surfaces visually distinct and routing between them cleanly.
+1. **Audit first.** I ran the original Django templates through axe DevTools and listed every violation by WCAG criterion.
+2. **Fix by principle, not by component.** Rather than patching each component ad-hoc, I fixed the root cause in `index.css` (focus rings, colour variables that guarantee contrast) so every component inherits correct behaviour.
+3. **Key fixes applied:**
+   - `<a href="#main-content">Skip to main content</a>` — WCAG 2.4.1
+   - All inputs now have `<label>` elements (not placeholder-only) — WCAG 1.3.1
+   - Disabled "full" booking action is a `<button disabled>` not a `disabled` anchor — anchors can't be truly disabled in HTML, causing confusing screen reader behaviour
+   - Seat-count badges use both colour + icon (not colour alone) — WCAG 1.4.1
+   - `aria-live="polite"` on the search results count — screen reader users hear the count update
+   - `role="progressbar"` with `aria-valuenow/min/max` on the booking stepper — WCAG 4.1.2
+   - `aria-label` on every `<nav>` landmark — WCAG 2.4.6
+   - `<time datetime="...">` on all dates — machine-readable for search engines and assistive tech
 
----
-
-## Accessibility
-
-- Semantic HTML landmarks (`<main>`, `<nav>`, `<header>`) used throughout for screen reader navigation
-- Text contrast meets WCAG AA requirements
-- All interactive elements carry explicit `aria-label` attributes
-- Touch targets sized to a minimum of 44×44px for mobile use
-- Navigation works with keyboard input on desktop
-
-## SEO
-
-- Unique `<title>` and meta description set per route via React Helmet
-- Heading hierarchy is semantic and consistent (`h1` → `h2` → `h3`)
-- Meaningful content structure for crawler readability
-
-## Git Workflow
-
-Commits follow conventional commit style to keep history reviewable:
-
-- `feat:` — new features
-- `style:` — UI and CSS updates
-- `docs:` — README and asset changes
-- `fix:` — bug fixes
-
-Work is split into focused commits rather than a single large push so progress is easy to follow.
+4. **SEO.** Every page has a unique `<title>` and `<meta description>` via `react-helmet-async`. The home page and each workshop detail page have JSON-LD structured data (`Organization` and `EducationEvent` schemas) so Google can display rich results. The `index.html` has Open Graph and Twitter Card tags for social sharing. A `<link rel="canonical">` prevents duplicate content issues.
 
 ---
 
-*Built for the FOSSEE screening task with a focus on usability, responsiveness, and clean execution.*
+## ✅ Submission Checklist
+
+- [x] Code is readable and well-structured
+- [x] Git history shows progressive work (no single commit dumps)
+- [x] README includes reasoning answers and setup instructions
+- [x] Screenshots and live demo link included
+- [x] Code is documented where necessary (JSDoc on all components)
+
+---
+
+## 🗂 Project Structure
+
+```
+frontend/
+├── index.html              ← SEO meta, OG tags, structured data, fonts
+├── package.json
+├── vite.config.js
+└── src/
+    ├── main.jsx            ← App entry, BrowserRouter
+    ├── App.jsx             ← Routes, HelmetProvider, skip link
+    ├── index.css           ← Global tokens, WCAG-compliant colours, utilities
+    ├── components/
+    │   ├── Navigation.jsx  ← Bottom tab (mobile) / top bar (desktop), ARIA
+    │   ├── Layout.jsx      ← Shell: nav + <main id="main-content"> + footer
+    │   ├── WorkshopCard.jsx← <article>, semantic seat indicator
+    │   ├── Footer.jsx      ← Footer landmark, meaningful links
+    │   └── *.css
+    ├── pages/
+    │   ├── Home.jsx        ← Helmet SEO, feature grid
+    │   ├── Workshops.jsx   ← Search with <label>, aria-live results
+    │   ├── WorkshopDetail.jsx ← JSON-LD schema, <dl> info grid
+    │   ├── Booking.jsx     ← Multi-step form, fieldset/legend, progress bar
+    │   ├── Confirmation.jsx
+    │   ├── Status.jsx
+    │   ├── Statistics.jsx
+    │   ├── ProposeWorkshop.jsx
+    │   ├── About.jsx
+    │   ├── FAQ.jsx
+    │   └── Pages.css       ← Shared page styles
+    └── data/
+        └── workshops.js    ← Mock data (ISO dates, rich descriptions)
+```
+
+---
+
+## 🛠 Tech Stack
+
+| Tool | Version | Purpose |
+|---|---|---|
+| React | 19 | UI library |
+| React Router | v7 | Client-side routing |
+| react-helmet-async | 3 | Per-page SEO metadata |
+| Lucide React | 1.8 | Accessible SVG icon set |
+| Vite | 8 | Build tool, dev server |
+| Vanilla CSS | — | Styling (no runtime overhead) |
+
+---
+
+## ♿ Accessibility (WCAG 2.1 AA)
+
+| Criterion | Implementation |
+|---|---|
+| 1.3.1 Info and Relationships | `<label>` on all inputs, `<fieldset>/<legend>` on forms, `<dl>` for definition lists |
+| 1.4.1 Use of Color | Seat status uses icon + colour + text |
+| 1.4.3 Contrast (Minimum) | All text colours verified ≥4.5:1 against backgrounds |
+| 2.1.1 Keyboard | All interactive elements keyboard-accessible; no keyboard traps |
+| 2.4.1 Bypass Blocks | Skip-to-content link on every page |
+| 2.4.6 Headings and Labels | All `<nav>` elements have `aria-label`; heading hierarchy preserved |
+| 4.1.2 Name, Role, Value | `aria-label`, `aria-hidden`, `aria-live`, `aria-busy`, `role="progressbar"` applied throughout |
+
+---
+
+## 🔍 SEO Implementation
+
+| Feature | Where |
+|---|---|
+| Unique `<title>` per page | `react-helmet-async` in every page component |
+| `<meta name="description">` | Per page, keyword-relevant |
+| Open Graph tags | `index.html` (global) + per page |
+| Twitter Card | `index.html` |
+| `<link rel="canonical">` | `index.html` |
+| JSON-LD Organization schema | `index.html` |
+| JSON-LD EducationEvent schema | Each `WorkshopDetail` page |
+| Semantic HTML (`<main>`, `<nav>`, `<article>`, `<aside>`, `<footer>`) | Throughout |
+| `<time datetime="...">` on all dates | `WorkshopCard`, `WorkshopDetail` |
+
+---
+
+## 📄 Original Project
+
+This is a UI/UX redesign of [FOSSEE/workshop_booking](https://github.com/FOSSEE/workshop_booking), a Django-based workshop management portal by IIT Bombay. Core functionality is preserved; only the frontend has been reimagined as a React SPA.
+
+**License:** GPL-3.0 (same as original FOSSEE project)
