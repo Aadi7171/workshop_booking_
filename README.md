@@ -19,3 +19,18 @@ cd frontend
 npm install
 npm run dev       # Development server at http://localhost:5173
 npm run build     # Production build
+
+## 🏗️ Project Structure
+
+```text
+.
+├── workshop_portal/       # Core Django project configuration
+├── workshop_app/          # Workshop management and booking logic
+├── statistics_app/        # Reporting and analytics
+├── cms/                   # Content management features
+├── frontend/              # React + Vite student-facing UI
+│   └── src/
+│       ├── components/    # Reusable UI pieces
+│       ├── pages/         # Route-level pages
+│       └── data/          # Mock data for UI development
+└── docs/                  # Screenshots and demo assets
