@@ -4,24 +4,26 @@ A mobile-first student platform for discovering and booking technical workshops 
 
 ---
 
-## 🎬 Live Demo
+## 🎬 Live Demo Walkthrough
 
 **[▶ Watch the demo walkthrough on YouTube](https://youtu.be/your-video-id-here)**
-> Replace the link above with your actual hosted demo URL (YouTube, Loom, or similar) before submitting.
+> *Note: Please replace the link above with your actual walkthrough recording before final submission.*
 
 ---
 
 ## 📸 Visual Showcase
 
 ### Home / Landing Page
+The redesign shifts from a dense, organizer-centric layout to a high-impact, student-first discovery hub.
 
 | Before | After |
 | :---: | :---: |
 | ![Original Home](./docs/screenshots/before_home.png) | ![Redesigned Home](./docs/screenshots/after_home.png) |
 
-### Workshop Discovery & Booking Flow
+### Discovery & Booking Flow
+Interactive search and a progressive 3-step booking flow simplify the student journey.
 
-| Discovery | Booking Stepper |
+| Workshop Discovery | Booking Stepper |
 | :---: | :---: |
 | ![Workshops List](./docs/screenshots/after_discovery.png) | ![Booking Flow](./docs/screenshots/after_booking.png) |
 
@@ -29,40 +31,36 @@ A mobile-first student platform for discovering and booking technical workshops 
 
 ## 🛠️ Setup Instructions
 
-### Frontend
-
+### Frontend (React + Vite)
 ```bash
 cd frontend
 npm install
 npm run dev       # Development server at http://localhost:5173
-npm run build     # Production build
 ```
 
-### Backend
-
+### Backend (Django)
 ```bash
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-cp .sampleenv .env              # Fill in your DB and SECRET_KEY values
 python manage.py migrate
-python manage.py runserver
+python manage.py runserver      # Backend API at http://localhost:8000
 ```
 
 ---
 
 ## 🏗️ Project Structure
 
-```
+```text
 .
 ├── workshop_portal/       # Core Django project configuration
 ├── workshop_app/          # Workshop management and booking logic
 ├── statistics_app/        # Reporting and analytics
 ├── cms/                   # Content management features
-├── frontend/              # React + Vite student-facing UI
+├── frontend/              # React + Vite student-facing SPA
 │   └── src/
-│       ├── components/    # Reusable UI pieces
-│       ├── pages/         # Route-level pages
+│       ├── components/    # Reusable UI pieces (Glassmorphism based)
+│       ├── pages/         # Route-level page components
 │       └── data/          # Mock data for UI development
 └── docs/                  # Screenshots and demo assets
 ```
@@ -72,70 +70,33 @@ python manage.py runserver
 ## 🧠 Design Rationale
 
 ### 1. What design principles guided your improvements?
+The original site was built around organizers and instructors — the student path to finding and booking a workshop was not clear. The core design goal was to make the **next action obvious** on every screen.
 
-The original site was built around organizers and instructors — the student path to finding and booking a workshop was not clear. The core design goal was to make the next action obvious on every screen.
-
-I focused on clarity, hierarchy, and reduced noise. Each page is built around a single primary action: discover, view details, then book. Spacing, typography weight, and button emphasis guide attention rather than crowding everything into one view.
-
-For visual style, I used dark indigo tones, frosted card surfaces, and subtle motion to give the interface a modern feel without making it heavy. The system font stack was kept intentionally — it loads instantly and feels native across operating systems.
+I focused on **Clarity, Hierarchy, and Cognitive Load reduction**. Spacing, typography weight, and primary button emphasis guide attention rather than crowding everything into one view. For visual style, I used "Glassmorphism" (dark indigo tones and frosted card surfaces) to provide a premium, modern feel that aligns with current educational app standards.
 
 ### 2. How did you ensure responsiveness across devices?
+The UI was built **Mobile-First**: the smallest screen defines the base layout, and larger breakpoints add structure on top. This ensures readability on phones, which are the primary devices for students.
 
-The UI was built mobile-first: the smallest screen defines the base layout, and larger breakpoints add structure on top. This made it easier to stay readable on phones, which are the primary device for students using this platform.
-
-Desktop-style navigation was replaced with a bottom tab bar on mobile so the main actions are reachable with one hand. Fixed widths were avoided throughout; flexible Flexbox and Grid layouts let cards, forms, and grids adapt naturally.
-
-For content-heavy areas like workshop lists, stacked cards replaced horizontal tables. This eliminates sideways scrolling and keeps the experience simple on small screens.
+- **Bottom Navigation**: Replaced desktop sidebars with a bottom tab bar on mobile for ergonomic thumb-reach.
+- **Adaptive Grids**: Used Flexbox and CSS Grid to transition from stacked mobile cards to multi-column desktop layouts naturally.
+- **No Side-Scrolling**: Converted horizontal data tables into vertical status cards for better mobile consumption.
 
 ### 3. What trade-offs did you make between design and performance?
-
-A light glassmorphism effect was used, but limited strictly to card surfaces so it does not affect the overall page render cost. This keeps the design polished without overloading lower-end devices.
-
-Heavy UI libraries like Bootstrap or Material-UI were avoided entirely. Writing plain, modular CSS per component took more time but gave full control over the output and kept the bundle lean with no runtime CSS-in-JS overhead.
-
-All animations are CSS-based rather than JavaScript-driven, so the interface stays smooth without the overhead of a motion library.
+- **Selective Glass**: A light glassmorphism effect was used, but limited strictly to card surfaces to minimize GPU render costs on lower-end mobile devices.
+- **Zero UI Libraries**: Avoided heavy frameworks like Bootstrap or Material UI. Writing modular Vanilla CSS kept the bundle lean and eliminated runtime CSS-in-JS overhead.
+- **Native Fonts**: Used a system font stack for instant loading and a native OS feel across all platforms.
 
 ### 4. What was the most challenging part of the task and how did you approach it?
-
-The hardest part was balancing the existing organizer flow with the new student-facing experience without breaking either. The original structure needed to stay functional for instructors while the student journey needed to feel intentional and complete.
-
-The approach was to keep organizer pages accessible through their existing Django routes and introduce the student experience through React routes in the new `frontend/` layer. That kept both user types from being forced into the same navigation pattern.
-
-Making the navigation feel coherent across both audiences was the trickiest detail. It was resolved by giving students a focused bottom tab bar while keeping organizer-specific actions in a separate, less prominent area.
+The main challenge was making the navigation feel coherent for two distinct audiences: organizers and students. I solved this by decoupling the routes — students receive a focused, modern SPA experience via the React frontend, while organizer actions remain accessible through the stable legacy layout. This prevents both user types from being forced into a "one-size-fits-all" pattern that would serve neither well.
 
 ---
 
-## ♿ Accessibility
-
-- Semantic HTML landmarks used throughout for screen reader navigation
-- Text contrast meets WCAG AA requirements
-- All interactive elements carry explicit labels
-- Touch targets sized to a minimum of 44×44px for mobile use
-- Navigation works with keyboard input on desktop
-
----
-
-## 🔎 SEO
-
-- Unique `<title>` and meta description set per route
-- Heading hierarchy is semantic and consistent
-- Meaningful content structure for crawler readability
+## ♿ Accessibility & SEO
+- **Accessibility**: Semantic HTML landmarks, WCAG-compliant text contrast, and 44x44px mobile touch targets.
+- **SEO**: Dynamic route-based metadata management using `react-helmet-async` and semantic heading hierarchies.
 
 ---
 
 ## 📜 Git Workflow
-
-Commits follow conventional commit style to keep history reviewable:
-
-- `feat:` — new features
-- `style:` — UI and CSS updates
-- `docs:` — README and asset changes
-- `fix:` — bug fixes
-
-Work is split into focused commits rather than a single large push so progress is easy to follow.
-
----
-
-## 📝 Documentation
-
-Key logic such as the booking stepper and filtering behavior is documented with JSDoc where needed to keep the code easier to understand and maintain.
+Commits follow the conventional commit style to keep history reviewable and progressive:
+- `feat:` (New features) | `style:` (UI/UX updates) | `docs:` (Documentation) | `fix:` (Bug fixes)
